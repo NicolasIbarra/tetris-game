@@ -1,4 +1,4 @@
-#Tetris repo
+# Tetris repo
 
 First repo in GitHub platform. 
 First README ever done by me. Hope it helps.
