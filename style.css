@@ -1,9 +1,13 @@
+.container{
+    display: flex;
+}
+
 .grid {
     width: 200px;
     height: 400px;
     display: flex;
     flex-wrap: wrap;
-    background-color: yellow;
+    background-color: rgb(172, 172, 151);
 }
 
 .grid div {
@@ -13,4 +17,18 @@
 
 .piece {
     background-color: blue;
+}
+
+.mini-grid{
+    width: 100px;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 5em;
+    background-color: rgb(172, 172, 151);
+}
+
+.mini-grid div {
+    width: 20px;
+    height: 20px;
 }
