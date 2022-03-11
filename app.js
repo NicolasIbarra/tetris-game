@@ -35,9 +35,9 @@ const PIECE_L = [
 ]
 
 const PIECE_Z = [
-  [WIDTH*2, WIDTH*2+1, WIDTH+1, WIDTH+2],
+  [WIDTH, WIDTH+1, 1, 2],
   [0, WIDTH, WIDTH+1, WIDTH*2+1],
-  [WIDTH*2, WIDTH*2+1, WIDTH+1, WIDTH+2],
+  [WIDTH, WIDTH+1, 1, 2],
   [0, WIDTH, WIDTH+1, WIDTH*2+1]
 ]
 
@@ -220,13 +220,13 @@ function gameOver(){
   if (currentPiece.some(item => squares[item + currentPosition].classList.contains('taken'))){ //If the tetrominoe has riched the top of the grid then the interval is cleared and stops the pieces movement.
     SCORE_DISPLAY.innerHTML = "YOU LOST!" + " Your final score is " + score;
     clearInterval(timerId);
+    document.removeEventListener('keyup', movementControl);
   }
 }
 
 /* 
 
 CONSIDERACIONES
-* Hacer una nueva función con líneas repetidas de inicialización de nuevas piezas, de posición, etc.
-* Revisar si la asignación en la función moveDown se puede poner dentro de otra función.
 * Agregar botón de reseteo.
+
 */
