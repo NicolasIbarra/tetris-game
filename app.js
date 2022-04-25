@@ -15,12 +15,12 @@ const MINI_PIECES = [
 const WIDTH = 10; //The current quantity of cells in a row of the grid.
 const COLORS = ['purple', 'red', 'orange', 'lightblue', 'green'];
 const GRID = document.querySelector(".grid"); 
-const SCORE_DISPLAY = document.getElementById("score");
+const SCORE_DISPLAY = document.getElementById("scoreNumber");
 const BTN_START = document.getElementById("start-button");
 
-//Tetris pieces -> Each field of the pieces arrays is a different position of the piece. It's based on: 
-
 /*
+Tetris pieces -> Each field of the pieces arrays is a different position of the piece. It's based on: 
+
 [0,0]  [0,1]  [0,2]
 [1,0]  [1,1]  [1,2]
 [2,0]  [2,1]  [2,2]  
@@ -66,12 +66,12 @@ const PIECES = [PIECE_L, PIECE_Z, PIECE_T, PIECE_O, PIECE_I]; //Array of pieces.
 
 let pieceRotation = 0; //The pieces will always start with their first rotation.
 let currentPosition = 3; //Current position cell of the pieces in the grid. It starts in cell 3.
-let randomPiece = Math.floor(Math.random() * PIECES.length); //Randomly select a piece.
+let randomPiece = Math.floor(Math.random() * PIECES.length); 
 let currentPiece = PIECES[randomPiece][pieceRotation]; //The current piece shown in the grid.
 let nextRandomPiece = Math.floor(Math.random() * PIECES.length);; //Next tetrominoe showed in the mini grid.
+let squares = Array.from(document.querySelectorAll(".grid div")); //We pick all the divs inside the grid and make an array of divs.
 let timerId;
 let score = 0;
-let squares = Array.from(document.querySelectorAll(".grid div")); //We pick all the divs inside the grid and make an array of divs.
 console.log(squares);
 
 document.addEventListener('keyup', movementControl);
@@ -102,7 +102,7 @@ function prepareNextTetrominoe(){
 
 //FREEZING A PIECE WHEN IT REACHES THE BOTTOM OF THE GRID OR TOUCHES ANOTHER PIECE
 function freezeCurrentTetrominoe(){
-  if(currentPiece.some(item => squares[currentPosition + item + WIDTH].classList.contains('taken'))){ //Evaluate if the piece has reached the end of the grid.
+  if(currentPiece.some(item => squares[currentPosition + item + WIDTH].classList.contains('taken'))){ //Evaluate if the piece has reached the end of the grid or another piece.
     currentPiece.forEach(item => squares[currentPosition + item].classList.add('taken')); //The piece stops moving.
     prepareNextTetrominoe();
     addScore(); //This function must be called in here. Otherwise, before the complete rows are cut, the next piece appears in the grid and its dragged down. 
@@ -128,7 +128,7 @@ function start(){
     timerId = null;
   } else {
     drawPiece();
-    timerId = setInterval(moveDown, 500); //Every 0.5 second, the piece will go down
+    timerId = setInterval(moveDown, 500); //Every 0.5 seconds, the piece will go down.
   }
 }
 
@@ -228,5 +228,6 @@ function gameOver(){
 
 CONSIDERACIONES
 * Agregar botón de reseteo.
+* Utilizar Sass para reutilizar estilos css.
 
 */
