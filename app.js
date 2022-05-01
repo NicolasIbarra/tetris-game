@@ -17,6 +17,7 @@ const COLORS = ['purple', 'red', 'orange', 'lightblue', 'green'];
 const GRID = document.querySelector(".grid"); 
 const SCORE_DISPLAY = document.getElementById("scoreNumber");
 const BTN_START = document.getElementById("start-button");
+const FINAL_MESSAGE = document.getElementById("gameOverMessage");
 
 /*
 Tetris pieces -> Each field of the pieces arrays is a different position of the piece. It's based on: 
@@ -218,7 +219,7 @@ function addScore(){
 //GAME OVER FUNCTIONALITY
 function gameOver(){
   if (currentPiece.some(item => squares[item + currentPosition].classList.contains('taken'))){ //If the tetrominoe has riched the top of the grid then the interval is cleared and stops the pieces movement.
-    SCORE_DISPLAY.innerHTML = "YOU LOST!" + " Your final score is " + score;
+    FINAL_MESSAGE.innerHTML = "YOU LOST!" + " Your final score is " + score;
     clearInterval(timerId);
     document.removeEventListener('keyup', movementControl);
   }
