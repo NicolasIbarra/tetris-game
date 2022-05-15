@@ -4,8 +4,9 @@ body {
 
 .button-container {
   display: flex;
-  margin-top: 10em;
+  margin-top: 5em;
   justify-content: center;
+  
 }
 
 .container {
@@ -77,7 +78,8 @@ body {
 }
 
 .gameover-container {
+  height: 3rem;
+  margin-top: 1rem;
   text-align: center;
-  margin-top: 1em;
   color: white;
 }

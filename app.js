@@ -16,8 +16,9 @@ const WIDTH = 10; //The current quantity of cells in a row of the grid.
 const COLORS = ['purple', 'red', 'orange', 'lightblue', 'green'];
 const GRID = document.querySelector(".grid"); 
 const SCORE_DISPLAY = document.getElementById("scoreNumber");
-const BTN_START = document.getElementById("start-button");
 const FINAL_MESSAGE = document.getElementById("gameOverMessage");
+const BTN_START = document.getElementById("start-button");
+const BTN_RESET = document.getElementById("reset-button");
 
 /*
 Tetris pieces -> Each field of the pieces arrays is a different position of the piece. It's based on: 
@@ -74,9 +75,6 @@ let squares = Array.from(document.querySelectorAll(".grid div")); //We pick all 
 let timerId;
 let score = 0;
 console.log(squares);
-
-document.addEventListener('keyup', movementControl);
-BTN_START.addEventListener('click', start);
 
 //PAINTING THE PIECES
 function drawPiece(){
@@ -173,15 +171,18 @@ function rotate(){
 }
 
 //REMOVE THE COLOR OF THE PREVIOUS TETROMINOE
-function removePreviousTetrominoe(){
-  MINI_DISPLAY.forEach(item => {
+function removePreviousTetrominoe(display){
+  display.forEach(item => {
+    if(item.classList.contains('taken')) {
+      item.classList.remove('taken');
+    }
     item.style.backgroundColor = '';
   })
 }
 
 //DISPLAY THE SHAPE OF THE NEXT TETROMINOE
 function showNextTetrominoe(){
-  removePreviousTetrominoe();
+  removePreviousTetrominoe(MINI_DISPLAY);
   MINI_PIECES[nextRandomPiece].forEach(item => {
     MINI_DISPLAY[DISPLAY_INDEX + item].style.backgroundColor = COLORS[nextRandomPiece];
   })
@@ -219,11 +220,28 @@ function addScore(){
 //GAME OVER FUNCTIONALITY
 function gameOver(){
   if (currentPiece.some(item => squares[item + currentPosition].classList.contains('taken'))){ //If the tetrominoe has riched the top of the grid then the interval is cleared and stops the pieces movement.
-    FINAL_MESSAGE.innerHTML = "YOU LOST!" + " Your final score is " + score;
     clearInterval(timerId);
     document.removeEventListener('keyup', movementControl);
+    FINAL_MESSAGE.innerHTML = "YOU LOST! Your final score is " + score;
+    score = 0;
   }
 }
+
+//GAME RESET FUNCTIONALITY
+function gameReset(){
+  clearInterval(timerId);
+  timerId = null;
+  removePreviousTetrominoe(squares);
+  removePreviousTetrominoe(MINI_DISPLAY);
+  currentPosition = 3;
+  score = 0;
+  SCORE_DISPLAY.innerHTML = score
+}
+
+document.addEventListener('keyup', movementControl);
+BTN_START.addEventListener('click', start);
+BTN_RESET.addEventListener('click', gameReset);
+
 
 /* 
 

@@ -11,9 +11,20 @@
   </head>
   <body>
     
-    
+    <div class="gameover-container">
+      <h2>
+        <span id="gameOverMessage"></span>
+      </h2>
+    </div>
+
     <div class="button-container">
-      <button id="start-button">Start/Pause</button>
+      <div>
+        <button id="start-button">Start/Pause</button>
+      </div>
+      <span style="width: 5rem;"></span>
+      <div>
+        <button id="reset-button">Reset</button>
+      </div>
     </div>
     
     <div class="container">
@@ -230,12 +241,10 @@
         <div class="taken"></div>
         <div class="taken"></div>
       </div>
-
       <div class="data-container">
         <div class="nextTitle">
           <h2>Next</h2>
         </div>
-
         <div class="mini-grid">
           <div></div>
           <div></div>
@@ -258,32 +267,21 @@
           <div></div>
           <div></div>
         </div>
-  
         <div class="scoreTitle">
           <h2>Score</h2>
         </div>
-
         <div class="scoreNumber">
           <h2 id="scoreNumber">0</h2>
         </div>
-
         <div class="playerTitle">
           <h2>Player</h2>
         </div>
-
         <div class="playerName">
           <h2>Nico</h2>
         </div>
       </div>
   
     </div>
-    
-    <div class="gameover-container">
-      <h2>
-        <span id="gameOverMessage"></span>
-      </h2>
-    </div>
-      
 
   </body>
 </html>
